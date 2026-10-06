@@ -1,0 +1,67 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi objeto 3D en RA</title>
+
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+</head>
+
+<body style="margin: 0;">
+
+<a-scene embedded arjs>
+
+    <!-- Marcador -->
+    <a-marker preset="hiro">
+
+        <!-- Piso -->
+        <a-plane
+            position="0 0 0"
+            rotation="-90 0 0"
+            width="2"
+            height="2"
+            color="gray">
+        </a-plane>
+
+        <!-- Objeto 3D -->
+        <a-box
+            id="objeto"
+            position="0 1 0"
+            scale="1 1 1"
+            color="blue">
+        </a-box>
+
+    </a-marker>
+
+    <!-- Cámara -->
+    <a-entity camera></a-entity>
+
+</a-scene>
+
+<script>
+
+    let objeto = document.querySelector("#objeto");
+
+    objeto.addEventListener("click", function() {
+
+        objeto.setAttribute("color", "red");
+
+        objeto.setAttribute(
+            "scale",
+            "1.5 1.5 1.5"
+        );
+
+        objeto.setAttribute(
+            "rotation",
+            "0 45 0"
+        );
+
+    });
+
+</script>
+
+</body>
+</html>
+```
