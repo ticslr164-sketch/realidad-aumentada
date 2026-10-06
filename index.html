@@ -12,13 +12,9 @@
 
 <body style="margin: 0; overflow: hidden;">
 
-    <a-scene
-        embedded
-        arjs="sourceType: webcam; debugUIEnabled: false;"
-        renderer="logarithmicDepthBuffer: true;"
-    >
+    <a-scene embedded arjs>
 
-        <!-- MARCADOR HIRO -->
+        <!-- Marcador Hiro -->
         <a-marker preset="hiro">
 
             <!-- Piso -->
@@ -30,11 +26,46 @@
                 color="gray">
             </a-plane>
 
-            <!-- OBJETO 3D -->
+            <!-- Cuerpo del robot -->
             <a-box
-                id="objeto"
+                id="robot"
                 position="0 1 0"
-                scale="1 1 1"
+                scale="1 1.2 0.7"
+                color="blue">
+            </a-box>
+
+            <!-- Cabeza -->
+            <a-box
+                position="0 2.1 0"
+                scale="0.7 0.6 0.6"
+                color="lightblue">
+            </a-box>
+
+            <!-- Ojo izquierdo -->
+            <a-sphere
+                position="-0.2 2.15 0.3"
+                radius="0.08"
+                color="black">
+            </a-sphere>
+
+            <!-- Ojo derecho -->
+            <a-sphere
+                position="0.2 2.15 0.3"
+                radius="0.08"
+                color="black">
+            </a-sphere>
+
+            <!-- Brazo izquierdo -->
+            <a-box
+                position="-0.7 1 0"
+                scale="0.2 0.8 0.2"
+                color="blue">
+            </a-box>
+
+            <!-- Brazo derecho -->
+            <a-box
+                position="0.7 1 0"
+                scale="0.2 0.8 0.2"
                 color="blue">
             </a-box>
 
@@ -47,29 +78,29 @@
 
     <script>
 
-        let objeto = document.querySelector("#objeto");
+        let robot = document.querySelector("#robot");
 
-        objeto.addEventListener("click", function() {
+        robot.addEventListener("click", function() {
 
             // Cambiar color
-            objeto.setAttribute("color", "red");
+            robot.setAttribute("color", "red");
 
             // Cambiar tamaño
-            objeto.setAttribute(
+            robot.setAttribute(
                 "scale",
-                "1.5 1.5 1.5"
-            );
-
-            // Cambiar rotación
-            objeto.setAttribute(
-                "rotation",
-                "0 45 0"
+                "1.5 1.8 1"
             );
 
             // Cambiar posición
-            objeto.setAttribute(
+            robot.setAttribute(
                 "position",
                 "0 1.5 0"
+            );
+
+            // Cambiar rotación
+            robot.setAttribute(
+                "rotation",
+                "0 45 0"
             );
 
         });
