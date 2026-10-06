@@ -1,67 +1,80 @@
-```html
 <!DOCTYPE html>
 <html>
 <head>
     <title>Mi objeto 3D en RA</title>
 
+    <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <!-- AR.js -->
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@master/aframe/build/aframe-ar.js"></script>
 </head>
 
-<body style="margin: 0;">
+<body style="margin: 0; overflow: hidden;">
 
-<a-scene embedded arjs>
+    <a-scene
+        embedded
+        arjs="sourceType: webcam; debugUIEnabled: false;"
+        renderer="logarithmicDepthBuffer: true;"
+    >
 
-    <!-- Marcador -->
-    <a-marker preset="hiro">
+        <!-- MARCADOR HIRO -->
+        <a-marker preset="hiro">
 
-        <!-- Piso -->
-        <a-plane
-            position="0 0 0"
-            rotation="-90 0 0"
-            width="2"
-            height="2"
-            color="gray">
-        </a-plane>
+            <!-- Piso -->
+            <a-plane
+                position="0 0 0"
+                rotation="-90 0 0"
+                width="2"
+                height="2"
+                color="gray">
+            </a-plane>
 
-        <!-- Objeto 3D -->
-        <a-box
-            id="objeto"
-            position="0 1 0"
-            scale="1 1 1"
-            color="blue">
-        </a-box>
+            <!-- OBJETO 3D -->
+            <a-box
+                id="objeto"
+                position="0 1 0"
+                scale="1 1 1"
+                color="blue">
+            </a-box>
 
-    </a-marker>
+        </a-marker>
 
-    <!-- Cámara -->
-    <a-entity camera></a-entity>
+        <!-- Cámara -->
+        <a-entity camera></a-entity>
 
-</a-scene>
+    </a-scene>
 
-<script>
+    <script>
 
-    let objeto = document.querySelector("#objeto");
+        let objeto = document.querySelector("#objeto");
 
-    objeto.addEventListener("click", function() {
+        objeto.addEventListener("click", function() {
 
-        objeto.setAttribute("color", "red");
+            // Cambiar color
+            objeto.setAttribute("color", "red");
 
-        objeto.setAttribute(
-            "scale",
-            "1.5 1.5 1.5"
-        );
+            // Cambiar tamaño
+            objeto.setAttribute(
+                "scale",
+                "1.5 1.5 1.5"
+            );
 
-        objeto.setAttribute(
-            "rotation",
-            "0 45 0"
-        );
+            // Cambiar rotación
+            objeto.setAttribute(
+                "rotation",
+                "0 45 0"
+            );
 
-    });
+            // Cambiar posición
+            objeto.setAttribute(
+                "position",
+                "0 1.5 0"
+            );
 
-</script>
+        });
+
+    </script>
 
 </body>
 </html>
-```
