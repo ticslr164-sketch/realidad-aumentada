@@ -12,6 +12,21 @@
 
 <body style="margin: 0; overflow: hidden;">
 
+    <!-- Botón de interacción -->
+    <button
+        id="boton"
+        style="
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            padding: 15px 25px;
+            font-size: 18px;
+        ">
+        Cambiar robot
+    </button>
+
     <a-scene embedded arjs>
 
         <!-- Marcador Hiro -->
@@ -26,7 +41,7 @@
                 color="gray">
             </a-plane>
 
-            <!-- Cuerpo del robot -->
+            <!-- Cuerpo -->
             <a-box
                 id="robot"
                 position="0 1 0"
@@ -79,8 +94,9 @@
     <script>
 
         let robot = document.querySelector("#robot");
+        let boton = document.querySelector("#boton");
 
-        robot.addEventListener("click", function() {
+        boton.addEventListener("click", function() {
 
             // Cambiar color
             robot.setAttribute("color", "red");
