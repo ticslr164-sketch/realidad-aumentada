@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Mi objeto 3D en RA</title>
+    <title>Mi objeto 3D en Realidad Aumentada</title>
 
     <!-- A-Frame -->
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
@@ -23,13 +23,19 @@
             z-index: 10;
             padding: 15px 25px;
             font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            background: white;
         ">
         Cambiar robot
     </button>
 
-    <a-scene embedded arjs>
+    <a-scene
+        embedded
+        arjs="sourceType: webcam; debugUIEnabled: false;"
+        renderer="logarithmicDepthBuffer: true;">
 
-        <!-- Marcador Hiro -->
+        <!-- MARCADOR HIRO -->
         <a-marker preset="hiro">
 
             <!-- Piso -->
@@ -41,79 +47,115 @@
                 color="gray">
             </a-plane>
 
-            <!-- Cuerpo -->
-            <a-box
+            <!-- ROBOT COMPLETO -->
+            <a-entity
                 id="robot"
-                position="0 1 0"
-                scale="1 1.2 0.7"
-                color="blue">
-            </a-box>
+                position="0 0 0"
+                scale="1 1 1"
+                rotation="0 0 0">
 
-            <!-- Cabeza -->
-            <a-box
-                position="0 2.1 0"
-                scale="0.7 0.6 0.6"
-                color="lightblue">
-            </a-box>
+                <!-- CUERPO -->
+                <a-box
+                    id="cuerpo"
+                    position="0 0.8 0"
+                    scale="1 1.2 0.7"
+                    color="blue">
+                </a-box>
 
-            <!-- Ojo izquierdo -->
-            <a-sphere
-                position="-0.2 2.15 0.3"
-                radius="0.08"
-                color="black">
-            </a-sphere>
+                <!-- CABEZA -->
+                <a-box
+                    position="0 1.9 0"
+                    scale="0.7 0.6 0.6"
+                    color="lightblue">
+                </a-box>
 
-            <!-- Ojo derecho -->
-            <a-sphere
-                position="0.2 2.15 0.3"
-                radius="0.08"
-                color="black">
-            </a-sphere>
+                <!-- OJO IZQUIERDO -->
+                <a-sphere
+                    position="-0.2 1.95 0.31"
+                    radius="0.08"
+                    color="black">
+                </a-sphere>
 
-            <!-- Brazo izquierdo -->
-            <a-box
-                position="-0.7 1 0"
-                scale="0.2 0.8 0.2"
-                color="blue">
-            </a-box>
+                <!-- OJO DERECHO -->
+                <a-sphere
+                    position="0.2 1.95 0.31"
+                    radius="0.08"
+                    color="black">
+                </a-sphere>
 
-            <!-- Brazo derecho -->
-            <a-box
-                position="0.7 1 0"
-                scale="0.2 0.8 0.2"
-                color="blue">
-            </a-box>
+                <!-- BRAZO IZQUIERDO -->
+                <a-box
+                    position="-0.7 0.8 0"
+                    scale="0.2 0.8 0.2"
+                    color="blue">
+                </a-box>
+
+                <!-- BRAZO DERECHO -->
+                <a-box
+                    position="0.7 0.8 0"
+                    scale="0.2 0.8 0.2"
+                    color="blue">
+                </a-box>
+
+                <!-- PIERNA IZQUIERDA -->
+                <a-box
+                    position="-0.3 -0.1 0"
+                    scale="0.3 0.6 0.3"
+                    color="blue">
+                </a-box>
+
+                <!-- PIERNA DERECHA -->
+                <a-box
+                    position="0.3 -0.1 0"
+                    scale="0.3 0.6 0.3"
+                    color="blue">
+                </a-box>
+
+            </a-entity>
 
         </a-marker>
 
-        <!-- Cámara -->
+        <!-- CÁMARA -->
         <a-entity camera></a-entity>
 
     </a-scene>
 
+
+    <!-- JAVASCRIPT -->
     <script>
 
+        // Obtener el robot
         let robot = document.querySelector("#robot");
+
+        // Obtener el cuerpo
+        let cuerpo = document.querySelector("#cuerpo");
+
+        // Obtener el botón
         let boton = document.querySelector("#boton");
 
+
+        // Cuando se presiona el botón
         boton.addEventListener("click", function() {
 
-            // Cambiar color
-            robot.setAttribute("color", "red");
+            // 1. Cambiar color
+            cuerpo.setAttribute("color", "red");
 
-            // Cambiar tamaño
+
+            // 2. Cambiar tamaño
             robot.setAttribute(
                 "scale",
-                "1.5 1.8 1"
+                "1.4 1.4 1.4"
             );
 
-            // Cambiar posición
+
+            // 3. Cambiar posición
             robot.setAttribute(
                 "position",
-                "0 1.5 0"
+                "0.5 0.2 0"
             );
 
-            // Cambiar rotación
+
+            // 4. Cambiar rotación
             robot.setAttribute(
                 "rotation",
                 "0 45 0"
